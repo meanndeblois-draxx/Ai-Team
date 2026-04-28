@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -631,7 +631,7 @@ Write content that sounds like Meann — not a corporate brand.`
       const data = await res.json();
       removeTyping();
       if (data.error) {
-        addMessage('assistant', '⚠️ Error: ' + data.error.message);
+        addMessage('assistant', '⚠️ OpenAI Error: ' + data.error.message + ' (type: ' + data.error.type + ')');
         history.pop();
       } else {
         const reply = data.choices?.[0]?.message?.content || 'No response.';
@@ -640,7 +640,7 @@ Write content that sounds like Meann — not a corporate brand.`
       }
     } catch(err) {
       removeTyping();
-      addMessage('assistant', '⚠️ Something went wrong. Check your connection and try again.');
+      addMessage('assistant', '⚠️ Error: ' + err.message);
       history.pop();
     }
     document.getElementById('sendBtn').disabled = false;
